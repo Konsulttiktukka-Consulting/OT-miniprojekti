@@ -11,3 +11,8 @@
 `pip install -r requirements.txt`  
 * Run the application with  
 `python3 run.py` 
+
+## Tests
+* Use the virtual environment  
+* Run tests with  
+`pytest` 
