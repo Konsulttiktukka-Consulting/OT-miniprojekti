@@ -4,3 +4,4 @@ tasks.db
 items.db
 .vscode
 books.db
+env/
