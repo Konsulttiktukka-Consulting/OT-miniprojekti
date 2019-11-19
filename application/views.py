@@ -3,4 +3,4 @@ from application import app
 
 @app.route("/")
 def fronPage():
-    return render_template('frontpage.html')
+    return render_template('index.html')

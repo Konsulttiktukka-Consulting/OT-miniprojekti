@@ -14,5 +14,6 @@ db = SQLAlchemy(app)
 from flask_sqlalchemy import SQLAlchemy
 
 from application.books import models
+from application.books import views 
 
 db.create_all()

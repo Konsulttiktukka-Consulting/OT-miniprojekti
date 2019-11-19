@@ -7,5 +7,5 @@ class Book(db.Model):
     author = db.Column(db.String(144), nullable=False)
 
     def __init__(self, name, author):
-        self.booksName= name
-        self.author = author 
+        self.name= name
+        self.author = author
