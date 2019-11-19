@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Lukuvinkki</title>
-  </head>
 
-  <body>
-    {% block body %}
-      <p>
-        Content.
-      </p>
-    {% endblock %}
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Lukuvinkki</title>
+</head>
+
+<body>
+
+
+  <a href="{{ url_for('books_index')}}">Books</a>
+  <a href="{{ url_for('books_form')}}">Add book</a>
+  {% block body %}
+  <p>
+    Content.
+  </p>
+  {% endblock %}
+</body>
+
 </html>
