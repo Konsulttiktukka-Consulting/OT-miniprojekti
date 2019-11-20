@@ -1,7 +1,15 @@
-venv
-__pycache__
-tasks.db
-items.db
-.vscode
+
+
 books.db
 env/
+
+# mypy
+.mypy_cache/
+venv
+venv venv
+__pycache__
+.idea/
+node_modules
+
+#vscode
+.vscode
