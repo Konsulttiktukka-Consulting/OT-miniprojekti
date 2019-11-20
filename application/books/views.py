@@ -12,7 +12,7 @@ def books_form():
 
 @app.route("/books/", methods=["POST"])
 def books_create():
-    newBook = Book(request.form.get("name"),request.form.get("author"))
+    newBook = Book(request.form.get("name"),request.form.get("author"), request.form.get("description"))
     
     db.session().add(newBook)
     db.session().commit()

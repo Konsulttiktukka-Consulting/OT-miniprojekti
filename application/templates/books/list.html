@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Book</th>
-      <th>Author</th>
-    </tr>
-    {% for book in books%}
-    <tr>
-      <td>{{ book.name }}</td>
-      <td>{{ book.author }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.description }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
