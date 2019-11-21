@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Updating book</h1>
+<form method="POST" action="{{ url_for('books_update', book_id=book.id) }}">
+  <div>
+    {{ form.name.label }}
+    {{ form.name }}
+    <td>
+      <ul>
+        {% for error in form.name.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+  </div>
+  <div>
+    {{ form.author.label }}
+    {{ form.author }}  
+    <ul>
+      {% for error in form.author.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    {{ form.description.label }}
+    {{ form.description }} 
+    <td>
+      <ul>
+        {% for error in form.description.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+  </div>
+  <div>
+    <input type="submit" value="Update data"/>
+  </div>
+</form>
+{% endblock %}
+
