@@ -22,3 +22,5 @@ zipp==0.6.0
 gunicorn==20.0.0
 psycopg2==2.7.7
 WTForms==2.2.1
+behave==1.2.6
+selenium==3.141.0
