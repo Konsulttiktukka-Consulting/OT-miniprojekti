@@ -1,4 +1,4 @@
-from testing.postgresql import Postgresql
+#from testing.postgresql import Postgresql
 import pytest
 from application import create_app 
 from application import db as db
