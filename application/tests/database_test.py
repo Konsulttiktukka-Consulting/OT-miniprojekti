@@ -2,19 +2,22 @@ import pytest
 from application.books.models import Book
 
 
-def test_testi(db_session):
-    print("testi")
-    book = Book("Testi","Testi","Testi")
-    response = db_session().add(book)
 
-##Parametrit on määritelty conftest.py filussa.
-# Huom db_session ja _db on eri
-def test_save_request(_db):
-    print("testi1")
-    book = Book("Testi","Testi","Testi")
+def test_new_book_can_be_added(_db):
+    testParameters = ["NewName","NewAuthor","GoodBook"]
+    book = Book(testParameters[0], testParameters[1],testParameters[2])
     response = _db.session().add(book)
     _db.session().commit()
+
     result = _db.session().execute('select * from book;')
     for row in result:
-        print(row)
-    assert(1==2)
+        assert(row.name == testParameters[0])
+        assert(row.author== testParameters[1])
+        assert(row.description == testParameters[2])
+
+def test_invalid_book_cant_be_added(_db):
+    testParameters = ["NewName","NewAuthor","GoodBook"]
+    request = "INSERT INTO book (name, description) VALUES('NewName','GoodBook')"
+    with pytest.raises(Exception) as e:
+       assert _db.session().execute(request)
+    assert("IntegrityError" in str(e)  )
