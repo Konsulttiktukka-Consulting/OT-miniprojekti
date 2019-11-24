@@ -1,6 +1,7 @@
 
 
 books.db
+*.db
 env/
 
 # mypy
