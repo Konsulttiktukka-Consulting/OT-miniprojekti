@@ -2,7 +2,6 @@ import pytest
 from application.books.models import Book
 
 
-
 def test_new_book_can_be_added(_db):
     testParameters = ["NewName","NewAuthor","GoodBook"]
     book = Book(testParameters[0], testParameters[1],testParameters[2])
@@ -21,3 +20,11 @@ def test_invalid_book_cant_be_added(_db):
     with pytest.raises(Exception) as e:
        assert _db.session().execute(request)
     assert("IntegrityError" in str(e)  )
+
+def test_added_book_can_be_updated(_db):
+    _db.session().execute("UPDATE Book SET name='updated', author='updated', description='updated' WHERE id=1")
+    result = _db.session().execute('select * from book;')
+    for row in result:
+        assert(row.name == "updated")
+        assert(row.author== "updated")
+        assert(row.description == "updated")
