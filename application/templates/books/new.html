@@ -1,11 +1,45 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <form method="POST" action="{{ url_for('books_create') }}">
-        <input type="text" name="name"/>
-        <input type="text" name="author"/>
-        <input type="text" name="description"/>
-        <input type="submit" value="Add a new book"/>
-    </form>
-{% endblock %}
 
+<form method="POST" action="{{ url_for('books_create') }}">
+
+  <table>
+    <tr>
+      <th> {{ form.name.label }}</th>
+      <th> {{ form.author.label }}</th>
+      <th> {{ form.description.label }}</th>
+    </tr>
+    <tr>
+      <td>
+        {{ form.name }}
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.author }}
+        <ul>
+          {% for error in form.author.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.description }}
+        <ul>
+          {% for error in form.description.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        <input class="btn btn-primary" type="submit" value="Add a new book" />
+      </td>
+    </tr>
+  </table>
+
+</form>
+{% endblock %}

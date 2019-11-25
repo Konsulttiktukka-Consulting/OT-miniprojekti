@@ -1,19 +1,30 @@
 {% extends "layout.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bookList.css') }}">
+
 
 {% block body %}
-<table name="booktable">
-  <tr>
-    <th>Book</th>
-    <th>Author</th>
-  </tr>
+<!-- table table-hover table-sm  -->
+<table class="table table-hover table-sm bookList" name="booktable">
+  <thead class="thead-light">
+    <tr>
+      <th>Book</th>
+      <th>Author</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
   {% for book in books %}
   <tr>
     <td>{{ book.name }}</td>
     <td>{{ book.author }}</td>
-    <td>{{ book.description }}</td>
     <td>
-      <form method="POST" action="{{ url_for('books_contact', book_id=book.id) }}" >
-        <input type="submit" name="update" value="Update book"/>
+      <div class="description">
+        {{ book.description }}
+      </div>
+    </td>
+    <td>
+      <form method="POST" action="{{ url_for('books_contact', book_id=book.id) }}">
+        <input class="btn btn-primary" type="submit" name="update" value="Update book" />
       </form>
     </td>
   </tr>

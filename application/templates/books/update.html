@@ -16,27 +16,26 @@
   </div>
   <div>
     {{ form.author.label }}
-    {{ form.author }}  
+    {{ form.author }}
     <ul>
       {% for error in form.author.errors %}
-        <li>{{ error }}</li>
+      <li>{{ error }}</li>
       {% endfor %}
     </ul>
   </div>
   <div>
     {{ form.description.label }}
-    {{ form.description }} 
+    {{ form.description }}
     <td>
       <ul>
         {% for error in form.description.errors %}
-          <li>{{ error }}</li>
+        <li>{{ error }}</li>
         {% endfor %}
       </ul>
     </td>
   </div>
   <div>
-    <input type="submit" value="Update data"/>
+    <input class="btn btn-primary" type="submit" value="Update data" />
   </div>
 </form>
 {% endblock %}
-
