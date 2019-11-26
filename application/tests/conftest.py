@@ -1,43 +1,27 @@
-#from testing.postgresql import Postgresql
 import pytest
+
 from application import create_app
-from application import db as db
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from application import db
+from application import init_db
+from application.books.models import Book
 
-
-class TestConfig(object):
-    DEBUG = True
-    TESTING = True
-    # SQLALCHEMY_TRACK_MODIFICATIONS = False
-    ENV = 'test'
-
-
-@pytest.yield_fixture(scope='session')
+@pytest.fixture
 def app():
-    _app = create_app(TestConfig)
-    _app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///tests/test.db"
+    """Create and configure a new app instance for each test."""
+    # create the app with common test config
+    app = create_app({"TESTING": True, "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:"})
 
-    yield _app
+    with app.app_context():
+        init_db()
+    yield app
 
-
-@pytest.fixture(scope='session')
-def testapp(app):
+@pytest.fixture
+def client(app):
+    """A test client for the app."""
     return app.test_client()
 
 
-@pytest.yield_fixture(scope='session', autouse=True)
-def _db(app):
-    db = SQLAlchemy(app=app)
-
-    class Book(db.Model):
-        id = db.Column(db.Integer, primary_key=True)
-        name = db.Column(db.String(144), nullable=False)
-        author = db.Column(db.String(144), nullable=False)
-        description = db.Column(db.String(400), nullable=False)
-
-    db.create_all()
-
-    yield db
-    db.session().close()
-    db.drop_all()
+@pytest.fixture
+def runner(app):
+    """A test runner for the app's Click commands."""
+    return app.test_cli_runner()

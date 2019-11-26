@@ -23,7 +23,7 @@
       </div>
     </td>
     <td>
-      <form method="POST" action="{{ url_for('books_contact', book_id=book.id) }}">
+      <form method="POST" action="{{ url_for('books.books_contact', book_id=book.id) }}">
         <input class="btn btn-primary" type="submit" name="update" value="Update book" />
       </form>
     </td>

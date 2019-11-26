@@ -1,29 +1,55 @@
-from flask import Flask
-app = Flask(__name__)
-
-from application import views
-
-from flask_sqlalchemy import SQLAlchemy
-
 import os
 
-def create_app(config_object):
-    test_app = Flask(__name__)
-    test_app.config.from_object(config_object)
-    return test_app
+import click
+from flask import Flask
+from flask.cli import with_appcontext
+from flask_sqlalchemy import SQLAlchemy
 
-if os.environ.get("HEROKU"):
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///books.db"
-    app.config["SQLALCHEMY_ECHO"] = True
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
-from application.books import models
-from application.books import views
+def create_app(test_config=None):
 
-try:
+    app = Flask(__name__, instance_relative_config=True)
+
+    db_url = os.environ.get("DATABASE_URL")
+
+    if db_url is None:
+        db_url = "sqlite:///" + os.path.join(app.instance_path, "application.sqlite")
+        os.makedirs(app.instance_path, exist_ok=True)
+
+    app.config.from_mapping(
+        SECRET_KEY=os.environ.get("SECRET_KEY", "dev"),
+        SQLALCHEMY_DATABASE_URI=db_url,
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    )
+
+    if test_config is None:
+        app.config.from_pyfile("config.py", silent=True)
+    else:
+        app.config.update(test_config)
+
+    db.init_app(app)
+    app.cli.add_command(init_db_command)
+
+    # apply the blueprints to the app
+    from application import books
+
+    app.register_blueprint(books.bp)
+
+    app.add_url_rule("/", endpoint="index")
+
+    return app
+
+def init_db():
+    db.drop_all()
     db.create_all()
-except:
-    pass
+
+@click.command("init-db")
+@with_appcontext
+def init_db_command():
+    """Clear existing data and create new tables."""
+    init_db()
+    click.echo("Initialized the database.")
+
+app = create_app()

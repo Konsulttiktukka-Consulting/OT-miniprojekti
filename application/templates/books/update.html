@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1>Updating book</h1>
-<form method="POST" action="{{ url_for('books_update', book_id=book.id) }}">
+<form method="POST" action="{{ url_for('books.books_update', book_id=book.id) }}">
   <div>
     {{ form.name.label }}
     {{ form.name }}
