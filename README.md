@@ -7,6 +7,12 @@
 `python3 -m venv venv`  
 * Add the new environment as your source with  
 `source venv/bin/activate`  
+* Configure flask to run the application
+
+   `export FLASK_APP=application`
+* Initialize database
+
+   `flask init-db`
 * Install required libraries with the command  
 `pip install -r requirements.txt`  
 * Run the application with  
@@ -15,7 +21,7 @@
 ## Tests
 * Use the virtual environment  
 * Run tests with  
-`pytest` 
+`python3 -m pytest application/tests` 
 
 ## Definition of Done
 
