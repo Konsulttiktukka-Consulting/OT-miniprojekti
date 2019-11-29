@@ -36,3 +36,9 @@ def videos_update(video_id):
 
     form = VideoForm(obj=video)
     return render_template("videos/update.html", video=video, form=form)
+
+
+@bp.route("/videos/<video_id>", methods=["GET", "POST"])
+def videos_show(video_id):
+    video = Video.query.get(video_id)
+    return render_template("videos/video.html", video=video)

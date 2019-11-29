@@ -17,9 +17,14 @@
       <input class="btn btn-primary" type="submit" name="update" value="Update book" />
     </form>
     {% elif obj.category == "Video" %}
-    <form class="card-link" method="POST" action="{{ url_for('videos.videos_update', video_id=obj.id) }}">
-      <input class="btn btn-primary" type="submit" name="update" value="Update book" />
-    </form>
+    <div>
+      <form method="POST" action="{{ url_for('videos.videos_update', video_id=obj.id) }}">
+        <input class="btn btn-primary" type="submit" name="update" value="Update Video" />
+      </form>
+      <form method="POST" action="{{ url_for('videos.videos_show', video_id=obj.id) }}">
+        <input class="btn btn-primary" type="submit" name="update" value="View video" />
+      </form>
+    </div>
     {% endif %}
 
   </div>
