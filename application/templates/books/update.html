@@ -4,11 +4,11 @@
 <h1>Updating book</h1>
 <form method="POST" action="{{ url_for('books.books_update', book_id=book.id) }}">
   <div>
-    {{ form.name.label }}
-    {{ form.name }}
+    {{ form.title.label }}
+    {{ form.title }}
     <td>
       <ul>
-        {% for error in form.name.errors %}
+        {% for error in form.title.errors %}
         <li>{{ error }}</li>
         {% endfor %}
       </ul>

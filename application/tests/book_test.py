@@ -11,7 +11,7 @@ def test_index(client):
 
 def test_create(client, app):
     assert client.get("/books/new/").status_code == 200
-    client.post("/books/", data={"name": "moi",
+    client.post("/books/", data={"title": "moi",
                                  "author": "moi", "description": "moi"})
 
     with app.app_context():
