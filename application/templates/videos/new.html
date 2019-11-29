@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<!-- 
-<form method="POST" action="{{ url_for('videos.video_form') }}">
 
+<form method="POST" action="{{ url_for('videos.videos_create') }}">
   <table>
     <tr>
       <th> {{ form.title.label }}</th>
@@ -11,17 +10,17 @@
     </tr>
     <tr>
       <td>
-        {{ form.name }}
+        {{ form.title }}
         <ul>
-          {% for error in form.name.errors %}
+          {% for error in form.title.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
       </td>
       <td>
-        {{ form.author }}
+        {{ form.url }}
         <ul>
-          {% for error in form.author.errors %}
+          {% for error in form.url.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
@@ -30,7 +29,7 @@
         <input class="btn btn-primary" type="submit" value="Add a new video" />
       </td>
     </tr>
-  </table> -->
+  </table>
 
 </form>
 {% endblock %}

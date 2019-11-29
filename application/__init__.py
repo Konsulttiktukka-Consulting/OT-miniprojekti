@@ -36,8 +36,10 @@ def create_app(test_config=None):
 
     # apply the blueprints to the app
     from application import books
+    from application import videos
 
     app.register_blueprint(books.bp)
+    app.register_blueprint(videos.bp)
 
     app.add_url_rule("/", endpoint="index")
 

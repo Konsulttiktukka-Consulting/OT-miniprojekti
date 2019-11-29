@@ -11,3 +11,15 @@ bp = Blueprint("videos", __name__)
 def video_form():
     form = VideoForm()
     return render_template("videos/new.html", form=form)
+
+
+@bp.route("/videos/", methods=["GET", "POST"])
+def videos_create():
+    form = VideoForm(request.form)
+    if form.validate_on_submit():
+        newBook = Video(form.title.data, form.url.data)
+        db.session().add(newBook)
+        db.session().commit()
+        return redirect(url_for("books.books_index"))
+
+    return render_template("videos/new.html", form=form)

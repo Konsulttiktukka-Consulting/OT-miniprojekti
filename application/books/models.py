@@ -7,6 +7,7 @@ class Book(db.Model):
     name = db.Column(db.String(144), nullable=False)
     author = db.Column(db.String(144), nullable=False)
     description = db.Column(db.String(400), nullable=False)
+    category = db.Column(db.String(144), nullable=False)
 
     def __init__(self, name, author, description):
         self.name = name
