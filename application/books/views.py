@@ -34,7 +34,8 @@ def books_form():
 def books_create():
     form = BookForm(request.form)
     if form.validate_on_submit():
-        newBook = Book(form.name.data, form.author.data, form.description.data)
+        newBook = Book(form.title.data, form.author.data,
+                       form.description.data)
         db.session().add(newBook)
         db.session().commit()
         return redirect(url_for("books.books_index"))
