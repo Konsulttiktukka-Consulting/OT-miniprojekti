@@ -21,7 +21,11 @@
 ## Tests
 * Use the virtual environment  
 * Run tests with  
-`python3 -m pytest application/tests` 
+`python3 -m pytest application/tests`
+* Coverage tests with
+`coverage run -m pytest`
+* Generate coverage report after coverage test
+`coverage report`
 
 ## Definition of Done
 
