@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
 def create_app(test_config=None):
 
     app = Flask(__name__, instance_relative_config=True)
@@ -15,7 +16,8 @@ def create_app(test_config=None):
     db_url = os.environ.get("DATABASE_URL")
 
     if db_url is None:
-        db_url = "sqlite:///" + os.path.join(app.instance_path, "application.sqlite")
+        db_url = "sqlite:///" + \
+            os.path.join(app.instance_path, "application.sqlite")
         os.makedirs(app.instance_path, exist_ok=True)
 
     app.config.from_mapping(
@@ -41,9 +43,17 @@ def create_app(test_config=None):
 
     return app
 
+
 def init_db():
+    from application.books.models import Book
+
     db.drop_all()
     db.create_all()
+    initialBook = Book("Sinuhe egyptiläinen",
+                       "Mika Waltari", "Kertoo sinuhen tarinan")
+    db.session().add(initialBook)
+    db.session().commit()
+
 
 @click.command("init-db")
 @with_appcontext
@@ -51,5 +61,6 @@ def init_db_command():
     """Clear existing data and create new tables."""
     init_db()
     click.echo("Initialized the database.")
+
 
 app = create_app()

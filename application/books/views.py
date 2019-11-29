@@ -6,9 +6,11 @@ from application.books.forms import BookForm
 
 bp = Blueprint("books", __name__)
 
+
 @bp.route("/")
 def index():
-    return render_template("layout.html")
+    return render_template("index.html")
+
 
 @bp.route("/books", methods=["GET"])
 def books_index():
