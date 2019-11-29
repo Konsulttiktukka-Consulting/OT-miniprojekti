@@ -1,4 +1,5 @@
 import pytest
+from flask import url_for
 
 from application import db
 from application.books.models import Book
@@ -16,3 +17,23 @@ def test_create(client, app):
 
     with app.app_context():
         assert Book.query.count() == 2
+
+
+def test_bookmarkList(client, app):
+    res = client.get("/books")
+    assert res.status_code == 200
+    assert b"List of bookmarks" in res.data
+
+
+def test_update(client, app):
+    res = client.get("/books/update/1/")
+    assert res.status_code == 200
+    assert b"Updating book" in res.data
+
+
+def test_bookContact(client, app):
+    with client:
+        rv = client.get("/books/1/", follow_redirects=True)
+
+    assert rv.status_code == 200
+    assert b"List of bookmarks" in rv.data
