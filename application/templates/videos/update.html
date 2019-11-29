@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Updating video</h1>
+<form method="POST" action="{{ url_for('videos.videos_update', video_id=video.id) }}">
+  <div>
+    {{ form.title.label }}
+    {{ form.title }}
+    <td>
+      <ul>
+        {% for error in form.title.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+  </div>
+  <div>
+    {{ form.url.label }}
+    {{ form.url }}
+    <ul>
+      {% for error in form.url.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <input class="btn btn-primary" type="submit" value="Update data" />
+  </div>
+</form>
+{% endblock %}

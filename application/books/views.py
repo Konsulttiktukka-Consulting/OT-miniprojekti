@@ -48,7 +48,7 @@ def books_contact(book_id):
     if "update" in request.form:
         return redirect(url_for("books.books_update", book_id=book_id))
     else:
-        return redirect(url_for("books_index"))
+        return redirect(url_for("books.books_index"))
 
 
 @bp.route("/books/update/<book_id>/", methods=["GET", "POST"])
