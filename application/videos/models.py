@@ -11,4 +11,4 @@ class Video(db.Model):
     def __init__(self, title, url):
         self.title = title
         self.url = url
-        self.category = 'video'
+        self.category = 'Video'

@@ -3,7 +3,7 @@ from wtforms import StringField, TextAreaField, validators
 
 
 class BookForm(FlaskForm):
-    name = StringField(
+    title = StringField(
         "Book title", [validators.DataRequired(), validators.Length(min=2)])
     author = StringField(
         "Book author", [validators.DataRequired(), validators.Length(min=2)])

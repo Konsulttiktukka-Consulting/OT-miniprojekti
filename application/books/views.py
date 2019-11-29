@@ -3,6 +3,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from application import db
 from application.books.models import Book
 from application.books.forms import BookForm
+from sqlalchemy import text
 
 bp = Blueprint("books", __name__)
 
@@ -14,7 +15,13 @@ def index():
 
 @bp.route("/books", methods=["GET"])
 def books_index():
-    return render_template("books/list.html", books=Book.query.all())
+    sql = text('''
+    SELECT id, title, category FROM Video 
+    UNION 
+    SELECT id, title, category FROM Book''')
+    result = db.engine.execute(sql)
+
+    return render_template("books/list.html", data=result)
 
 
 @bp.route("/books/new/")

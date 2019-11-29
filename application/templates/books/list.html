@@ -1,33 +1,24 @@
 {% extends "layout.html" %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/bookList.css') }}">
 
 
 {% block body %}
 <!-- table table-hover table-sm  -->
-<table class="table table-hover table-sm bookList" name="booktable">
-  <thead class="thead-light">
-    <tr>
-      <th>Book</th>
-      <th>Author</th>
-      <th>Description</th>
-    </tr>
-  </thead>
 
-  {% for book in books %}
-  <tr>
-    <td>{{ book.name }}</td>
-    <td>{{ book.author }}</td>
-    <td>
-      <div class="description">
-        {{ book.description }}
-      </div>
-    </td>
-    <td>
-      <form method="POST" action="{{ url_for('books.books_contact', book_id=book.id) }}">
-        <input class="btn btn-primary" type="submit" name="update" value="Update book" />
-      </form>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+{% for obj in data %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{obj.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{obj.category}}</h6>
+    <p class="card-text">
+    </p>
+
+    {% if obj.category == "Book" %}
+    <form class="card-link" method="POST" action="{{ url_for('books.books_contact', book_id=obj.id) }}">
+      <input class="btn btn-primary" type="submit" name="update" value="Update book" />
+    </form>
+    {% endif %}
+
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
