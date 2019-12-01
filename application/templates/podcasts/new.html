@@ -2,53 +2,54 @@
 
 {% block body %}
 
+<h1 class="text-center">Add a new podcast</h1>
 <form method="POST" action="{{ url_for('podcasts.podcasts_create') }}">
-  <table>
-    <tr>
-      <th> {{ form.author.label }}</th>
-      <th> {{ form.title.label }}</th>
-      <th> {{ form.name.label }}</th>
-      <th> {{ form.description.label }}</th>
-    </tr>
-    <tr>
+    <div class="form-group">
+        {{ form.author.label }}
+        {{ form.author(class="form-control")}}
+        <td>
+          <ul>
+            {% for error in form.author.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+    </div>
+    <div class="form-group">
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+        <td>
+          <ul>
+            {% for error in form.title.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+    </div>
+    <div class="form-group">
+      {{ form.name.label }}
+      {{ form.name(class="form-control") }}
       <td>
-        {{ form.author }}
-        <ul>
-          {% for error in form.author.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      <td>
-        {{ form.title }}
-        <ul>
-          {% for error in form.title.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      <td>
-        {{ form.name }}
         <ul>
           {% for error in form.name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
       </td>
-      <td>
+    </div>
+    <div class="form-group">
+        {{ form.description.label }}
+        {{ form.description(class="form-control", rows="10") }}
         <td>
-          {{ form.description }}
           <ul>
             {% for error in form.description.errors %}
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
         </td>
-      <td> 
-      <input class="btn btn-primary" type="submit" value="Add a new podcast" />
-      </td>
-    </tr>
-  </table>
-
+      </div>
+    <div>
+      <input type="submit" class="btn btn-success my-2 my-sm-0" value="Add a new podcast"/>
+    </div>
 </form>
 {% endblock %}

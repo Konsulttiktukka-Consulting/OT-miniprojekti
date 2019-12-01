@@ -22,7 +22,7 @@ def podcasts_create():
 
     return render_template("podcasts/new.html", form=form)
 
-@bp.route("/podcasts/<podcast_id>/update", methods=["GET", "POST"])
+@bp.route("/podcasts/update/<podcast_id>/", methods=["GET", "POST"])
 def podcasts_update(podcast_id):
     podcast = Podcast.query.get(podcast_id)
     form = PodcastForm()

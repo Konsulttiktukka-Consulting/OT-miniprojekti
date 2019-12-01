@@ -2,7 +2,18 @@
 
 {% block body %}
 
-<h2>{{podcast.title}}</h2>
-
+<h1 class="text-center">{{podcast.name}}</h2>
+<div class="jumbotron">
+  <div class="container">
+      <h4 class="text-center">{{podcast.title}}</h4>
+      <div class="text-center">{{podcast.description}}</div>
+      <footer class="blockquote-footer">Podcast by {{ podcast.author }} </footer>
+  </div>
+</div>
+<div>
+  <form method="POST" action="{{ url_for('podcasts.podcasts_update', podcast_id=podcast.id) }}">
+    <input class="btn btn-primary" type="submit" name="update" value="Update podcast" />
+  </form>
+</div> 
 
 {% endblock %}
