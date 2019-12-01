@@ -2,10 +2,16 @@
 
 {% block body %}
 
-<h2>{{video.title}}</h2>
-
-<div>
-  <p>URL: <a href="http://{{video.url}}">{{video.url}}</a></p>
-</div>
+<h1 class="text-center">{{video.title}}</h2>
+  <div class="jumbotron">
+    <div class="container">
+        <div class="text-center">{{video.url}}</div>
+    </div>
+  </div>
+  <div>
+    <form method="POST" action="{{ url_for('videos.videos_update', video_id=video.id) }}">
+      <input class="btn btn-primary" type="submit" name="update" value="Update video" />
+    </form>
+  </div> 
 
 {% endblock %}

@@ -31,9 +31,3 @@ def test_update(client, app):
     assert b"Updating book" in res.data
 
 
-def test_bookContact(client, app):
-    with client:
-        rv = client.get("/books/1/", follow_redirects=True)
-
-    assert rv.status_code == 200
-    assert b"List of bookmarks" in rv.data
