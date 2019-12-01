@@ -1,35 +1,31 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+<h1 class="text-center">Add a new video</h1>
 <form method="POST" action="{{ url_for('videos.videos_create') }}">
-  <table>
-    <tr>
-      <th> {{ form.title.label }}</th>
-      <th> {{ form.url.label }}</th>
-    </tr>
-    <tr>
-      <td>
-        {{ form.title }}
-        <ul>
-          {% for error in form.title.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      <td>
-        {{ form.url }}
-        <ul>
-          {% for error in form.url.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      <td>
-        <input class="btn btn-primary" type="submit" value="Add a new video" />
-      </td>
-    </tr>
-  </table>
-
+    <div class="form-group">
+        {{ form.title.label }}
+        {{ form.title(class="form-control")}}
+        <td>
+          <ul>
+            {% for error in form.title.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+    </div>
+    <div class="form-group">
+        {{ form.url.label }}
+        {{ form.url(class="form-control") }}
+        <td>
+          <ul>
+            {% for error in form.url.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+    </div>
+    <input type="submit" class="btn btn-success my-2 my-sm-0" value="Add a new video"/>
+    </div>
 </form>
 {% endblock %}

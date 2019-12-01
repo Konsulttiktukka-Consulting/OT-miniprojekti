@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1 class="text-center">{{book.title}}</h2>
+  <div class="jumbotron">
+    <div class="container">
+        <div class="text-center">{{book.description}}</div>
+        <footer class="blockquote-footer">Book by {{ book.author }} </footer>
+    </div>
+  </div>
+  <div>
+    <form method="POST" action="{{ url_for('books.books_update', book_id=book.id) }}">
+      <input class="btn btn-primary" type="submit" name="update" value="Update book" />
+    </form>
+  </div> 
+
+{% endblock %}

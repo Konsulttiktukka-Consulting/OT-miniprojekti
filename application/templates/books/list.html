@@ -3,9 +3,9 @@
 
 {% block body %}
 <!-- table table-hover table-sm  -->
-<h1>List of bookmarks</h1>
+<h1 class="text-center">List of bookmarks</h1>
 {% for obj in data %}
-<div class="card" style="width: 18rem;">
+<div class="card mb-3" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">{{obj.title}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{obj.category}}</h6>
@@ -13,25 +13,19 @@
     </p>
 
     {% if obj.category == "Book" %}
-    <form class="card-link" method="POST" action="{{ url_for('books.books_contact', book_id=obj.id) }}">
-      <input class="btn btn-primary" type="submit" name="update" value="Update book" />
+    <form class="card-link" method="POST" action="{{ url_for('books.books_show', book_id=obj.id) }}">
+      <input class="btn btn-primary" type="submit" name="view" value="View book" />
     </form>
     {% elif obj.category == "Video" %}
     <div>
-      <form method="POST" action="{{ url_for('videos.videos_update', video_id=obj.id) }}">
-        <input class="btn btn-primary" type="submit" name="update" value="Update Video" />
-      </form>
       <form method="POST" action="{{ url_for('videos.videos_show', video_id=obj.id) }}">
-        <input class="btn btn-primary" type="submit" name="update" value="View video" />
+        <input class="btn btn-primary" type="submit" name="view" value="View video" />
       </form>
     </div>
     {% elif obj.category == "Podcast" %}
     <div>
-      <form method="POST" action="{{ url_for('podcasts.podcasts_update', podcast_id=obj.id) }}">
-        <input class="btn btn-primary" type="submit" name="update" value="Update podcast" />
-      </form>
       <form method="POST" action="{{ url_for('podcasts.podcasts_show', podcast_id=obj.id) }}">
-        <input class="btn btn-primary" type="submit" name="update" value="View podcast" />
+        <input class="btn btn-primary" type="submit" name="view" value="View podcast" />
       </form>
     </div>
     {% endif %}
