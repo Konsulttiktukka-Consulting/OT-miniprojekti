@@ -16,7 +16,9 @@ def index():
 @bp.route("/books", methods=["GET"])
 def books_index():
     sql = text('''
-    SELECT id, title, category FROM Video 
+    SELECT id, title, category FROM Video
+    UNION
+    SELECT id, title, category FROM Podcast
     UNION 
     SELECT id, title, category FROM Book''')
     result = db.engine.execute(sql)

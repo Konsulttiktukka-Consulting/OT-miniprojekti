@@ -25,8 +25,16 @@
         <input class="btn btn-primary" type="submit" name="update" value="View video" />
       </form>
     </div>
+    {% elif obj.category == "Podcast" %}
+    <div>
+      <form method="POST" action="{{ url_for('podcasts.podcasts_update', podcast_id=obj.id) }}">
+        <input class="btn btn-primary" type="submit" name="update" value="Update podcast" />
+      </form>
+      <form method="POST" action="{{ url_for('podcasts.podcasts_show', podcast_id=obj.id) }}">
+        <input class="btn btn-primary" type="submit" name="update" value="View podcast" />
+      </form>
+    </div>
     {% endif %}
-
   </div>
 </div>
 {% endfor %}
