@@ -20,7 +20,9 @@ def books_index():
     UNION
     SELECT id, title, category FROM Podcast
     UNION 
-    SELECT id, title, category FROM Book''')
+    SELECT id, title, category FROM Book
+    UNION
+    SELECT id, title, category FROM Blog_Post''')
     result = db.engine.execute(sql)
 
     return render_template("books/list.html", data=result)

@@ -38,10 +38,12 @@ def create_app(test_config=None):
     from application import books
     from application import videos
     from application import podcasts
+    from application import blogposts
 
     app.register_blueprint(books.bp)
     app.register_blueprint(videos.bp)
     app.register_blueprint(podcasts.bp)
+    app.register_blueprint(blogposts.bp)
 
     app.add_url_rule("/", endpoint="index")
 
@@ -52,6 +54,7 @@ def init_db():
     from application.books.models import Book
     from application.videos.models import Video
     from application.podcasts.models import Podcast
+    from application.blogposts.models import BlogPost 
 
     db.drop_all()
     db.create_all()
@@ -59,9 +62,11 @@ def init_db():
                        "Mika Waltari", "Kertoo sinuhen tarinan")
     initial_video = Video("Kissavideo", "www.youtube.com")
     initial_podcast = Podcast("Eero", "Podcastin otsikko", "Podcastin nimi", "podcastin description")
+    initial_blogpost = BlogPost("Eeron blogi", "http://oontääkissa.com","eero","Eero kertoo kissoista" )
     db.session().add(initial_book)
     db.session().add(initial_video)
     db.session().add(initial_podcast)
+    db.session().add(initial_blogpost)
     db.session().commit()
 
 
