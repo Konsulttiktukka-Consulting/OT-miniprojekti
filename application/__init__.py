@@ -62,7 +62,7 @@ def init_db():
                        "Mika Waltari", "Kertoo sinuhen tarinan")
     initial_video = Video("Kissavideo", "www.youtube.com")
     initial_podcast = Podcast("Eero", "Podcastin otsikko", "Podcastin nimi", "podcastin description")
-    initial_blogpost = BlogPost("Eeron blogi", "http://oontääkissa.com" )
+    initial_blogpost = BlogPost("Eeron blogi", "http://oontääkissa.com","eero","Eero kertoo kissoista" )
     db.session().add(initial_book)
     db.session().add(initial_video)
     db.session().add(initial_podcast)

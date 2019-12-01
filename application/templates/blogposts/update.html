@@ -1,9 +1,10 @@
+
 {% extends "layout.html" %}
 
 {% block body %}
 
-<h1 class="text-center">Add a new blog post</h1>
-<form method="POST" action="{{ url_for('blogposts.blog_posts_create') }}">
+<h1 class="text-center">update a blog post</h1>
+<form method="POST" action="{{ url_for('blogposts.blog_posts_update',blog_post_id = blogpost.id) }}">
     <div class="form-group">
         {{ form.author.label }}
         {{ form.author(class="form-control")}}
@@ -49,7 +50,7 @@
         </td>
       </div>
     <div>
-      <input type="submit" class="btn btn-success my-2 my-sm-0" value="Add a new blog post"/>
+      <input type="submit" class="btn btn-success my-2 my-sm-0" value="update"/>
     </div>
 </form>
 {% endblock %}
