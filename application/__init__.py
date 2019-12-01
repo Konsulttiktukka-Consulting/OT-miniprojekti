@@ -37,9 +37,11 @@ def create_app(test_config=None):
     # apply the blueprints to the app
     from application import books
     from application import videos
+    from application import podcasts
 
     app.register_blueprint(books.bp)
     app.register_blueprint(videos.bp)
+    app.register_blueprint(podcasts.bp)
 
     app.add_url_rule("/", endpoint="index")
 
@@ -49,14 +51,17 @@ def create_app(test_config=None):
 def init_db():
     from application.books.models import Book
     from application.videos.models import Video
+    from application.podcasts.models import Podcast
 
     db.drop_all()
     db.create_all()
-    initialBook = Book("Sinuhe egyptiläinen",
+    initial_book = Book("Sinuhe egyptiläinen",
                        "Mika Waltari", "Kertoo sinuhen tarinan")
-    initialVideo = Video("Kissavideo", "www.youtube.com")
-    db.session().add(initialBook)
-    db.session().add(initialVideo)
+    initial_video = Video("Kissavideo", "www.youtube.com")
+    initial_podcast = Podcast("Eero", "Podcastin otsikko", "Podcastin nimi", "podcastin description")
+    db.session().add(initial_book)
+    db.session().add(initial_video)
+    db.session().add(initial_podcast)
     db.session().commit()
 
 

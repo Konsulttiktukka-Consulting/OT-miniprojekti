@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="POST" action="{{ url_for('podcasts.podcasts_create') }}">
+  <table>
+    <tr>
+      <th> {{ form.author.label }}</th>
+      <th> {{ form.title.label }}</th>
+      <th> {{ form.name.label }}</th>
+      <th> {{ form.description.label }}</th>
+    </tr>
+    <tr>
+      <td>
+        {{ form.author }}
+        <ul>
+          {% for error in form.author.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.title }}
+        <ul>
+          {% for error in form.title.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.name }}
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        <td>
+          {{ form.description }}
+          <ul>
+            {% for error in form.description.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      <td> 
+      <input class="btn btn-primary" type="submit" value="Add a new podcast" />
+      </td>
+    </tr>
+  </table>
+
+</form>
+{% endblock %}
