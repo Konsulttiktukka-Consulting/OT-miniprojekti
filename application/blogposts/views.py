@@ -30,7 +30,7 @@ def blog_posts_update(blog_post_id):
     if form.validate_on_submit():
         form.populate_obj(blog_post)
         db.session().commit()
-        return render_template("blogposts/blogpost.html", blogpost=blog_post)
+        return redirect(url_for('blogposts.blog_posts_show',blog_post_id=blog_post_id))
 
     form = BlogPostForm(obj=blog_post)
     return render_template("blogposts/update.html", blogpost=blog_post, form=form)
