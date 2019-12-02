@@ -46,6 +46,7 @@ def books_create():
 
     return render_template("books/new.html", form=form)
 
+
 @bp.route("/books/update/<book_id>/", methods=["GET", "POST"])
 def books_update(book_id):
     book = Book.query.get(book_id)
@@ -54,9 +55,10 @@ def books_update(book_id):
     if form.validate_on_submit():
         form.populate_obj(book)
         db.session().commit()
-        return redirect(url_for("books.books_show",book_id = book_id))
+        return redirect(url_for("books.books_show", book_id=book_id))
     form = BookForm(obj=book)
     return render_template("books/update.html", book=book, form=form)
+
 
 @bp.route("/books/<book_id>", methods=["GET", "POST"])
 def books_show(book_id):
