@@ -54,7 +54,7 @@ def books_update(book_id):
     if form.validate_on_submit():
         form.populate_obj(book)
         db.session().commit()
-        return redirect(url_for("books.books_index"))
+        return redirect(url_for("books.books_show",book_id = book_id))
     form = BookForm(obj=book)
     return render_template("books/update.html", book=book, form=form)
 

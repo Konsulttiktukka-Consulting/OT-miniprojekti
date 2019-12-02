@@ -32,7 +32,7 @@ def videos_update(video_id):
     if form.validate_on_submit():
         form.populate_obj(video)
         db.session().commit()
-        return redirect(url_for("books.books_index"))
+        return redirect(url_for("videos.videos_show",video_id = video_id))
 
     form = VideoForm(obj=video)
     return render_template("videos/update.html", video=video, form=form)

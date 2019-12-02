@@ -29,7 +29,7 @@ def podcasts_update(podcast_id):
     if form.validate_on_submit():
         form.populate_obj(podcast)
         db.session().commit()
-        return redirect(url_for("books.books_index"))
+        return redirect(url_for("podcasts.podcasts_show",podcast_id=podcast_id))
 
     form = PodcastForm(obj=podcast)
     return render_template("podcasts/update.html", podcast=podcast, form=form)
