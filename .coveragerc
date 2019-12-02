@@ -1,2 +1,3 @@
 [run]
+source=application
 omit = venv/*, application/tests/*
