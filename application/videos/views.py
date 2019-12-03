@@ -25,6 +25,14 @@ def videos_create():
             db.session().commit()
             return redirect(url_for("videos.videos_index"))
 
+@bp.route("/videos/remove/<video_id>", methods=["POST"])
+def remove_video(video_id):
+    video = Video.query.get(video_id)
+    db.session().delete(video)
+    db.session().commit()
+
+    return redirect(url_for("videos.videos_index"))
+
 
 @bp.route("/videos", methods=["GET"])
 def videos_index():

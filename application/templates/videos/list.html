@@ -1,7 +1,4 @@
-{% extends "layout.html" %}
-
-
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 <!-- table table-hover table-sm  -->
 <h1 class="text-center">List of videos</h1>
 {% for video in videos %}
@@ -13,14 +10,35 @@
       <a href="https://www.youtube.com/watch?v=ioj6RdUR5r4">video =)</a>
     </p>
 
-
-    {#<div>
-      <form method="POST" action="{{ url_for('videos.videos_show', video_id=obj.id) }}">
-        <input class="btn btn-primary" type="submit" name="view" value="Toggle video" />
+    <div>
+      <form
+        method="POST"
+        action="{{ url_for('videos.remove_video', video_id=video.id) }}"
+      >
+        <input
+          class="btn btn-primary"
+          type="submit"
+          name="view"
+          value="remove video"
+        />
       </form>
-    </div>#}
+    </div>
 
+    {#
+    <div>
+      <form
+        method="POST"
+        action="{{ url_for('videos.videos_show', video_id=video.id) }}"
+      >
+        <input
+          class="btn btn-primary"
+          type="submit"
+          name="view"
+          value="Toggle video"
+        />
+      </form>
+    </div>
+    #}
   </div>
 </div>
-{% endfor %}
-{% endblock %}
+{% endfor %} {% endblock %}
