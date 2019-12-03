@@ -51,12 +51,13 @@ def videos_create():
                 platform = "youtube"
 
                 new_video = Video(title, url, creator, description, platform)
-                print()
                 db.session().add(new_video)
                 db.session.commit()
 
                 return redirect(url_for("videos.videos_index"))
             except:
+                form.url.errors = [
+                    "Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s'"]
                 return render_template("videos/new.html", form=form)
     return render_template("videos/new.html", form=form)
 
