@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 import flask
-
+import re
 from application import db
 from application.videos.models import Video
 from application.videos.forms import VideoForm
@@ -20,8 +20,13 @@ def videos_create():
     if flask.request.method == 'POST':
         form = VideoForm(request.form)
         if form.validate_on_submit():
-            newBook = Video(form.title.data, form.url.data)
-            db.session().add(newBook)
+
+            url = form.url.data
+            pattern = re.compile('(?<=\?v=).*')
+
+
+            new_video = Video(form.title.data, re.search(pattern,url)[0])
+            db.session().add(new_video)
             db.session().commit()
             return redirect(url_for("videos.videos_index"))
 
@@ -36,6 +41,10 @@ def remove_video(video_id):
 
 @bp.route("/videos", methods=["GET"])
 def videos_index():
+
+    videos = Video.query
+
+
     return render_template("videos/list.html", videos=Video.query.all())
 
 
