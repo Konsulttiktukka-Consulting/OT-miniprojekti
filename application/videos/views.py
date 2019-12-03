@@ -10,6 +10,9 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 import flask
 
 load_dotenv()
+DEVELOPER_KEY = os.getenv("API_KEY")
+if os.environ.get("HEROKU", 2) == 1:
+    DEVELOPER_KEY = os.environ.get("API_KEY")
 
 bp = Blueprint("videos", __name__)
 
@@ -30,7 +33,6 @@ def videos_create():
             try:
                 api_service_name = "youtube"
                 api_version = "v3"
-                DEVELOPER_KEY = os.getenv("API_KEY")
 
                 youtube = googleapiclient.discovery.build(
                     api_service_name, api_version, developerKey=DEVELOPER_KEY)
