@@ -49,8 +49,8 @@ def init_db():
 
     db.drop_all()
     db.create_all()
-    initial_video = Video(
-        "Kissavideo", "https://www.youtube.com/watch?v=ioj6RdUR5r4")
+    initial_video = Video("Kissavideo", "youtube.com", "moi", "moi", "moi")
+
     db.session().add(initial_video)
     db.session().commit()
 

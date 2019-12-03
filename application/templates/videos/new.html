@@ -3,29 +3,18 @@
 {% block body %}
 <h1 class="text-center">Add a new video</h1>
 <form method="POST" action="{{ url_for('videos.videos_create') }}">
-    <div class="form-group">
-        {{ form.title.label }}
-        {{ form.title(class="form-control")}}
-        <td>
-          <ul>
-            {% for error in form.title.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        </td>
-    </div>
-    <div class="form-group">
-        {{ form.url.label }}
-        {{ form.url(class="form-control") }}
-        <td>
-          <ul>
-            {% for error in form.url.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        </td>
-    </div>
-    <input type="submit" class="btn btn-success my-2 my-sm-0" value="Add a new video"/>
-    </div>
+  <div class="form-group">
+    {{ form.url.label }}
+    {{ form.url(class="form-control") }}
+    <td>
+      <ul>
+        {% for error in form.url.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+  </div>
+  <input type="submit" class="btn btn-success my-2 my-sm-0" value="Add a new video" />
+  </div>
 </form>
 {% endblock %}
