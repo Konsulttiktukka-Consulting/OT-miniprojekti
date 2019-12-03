@@ -8,9 +8,6 @@ import re
 import json
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 import flask
-<< << << < HEAD
-== == == =
->>>>>> > master
 
 load_dotenv()
 
