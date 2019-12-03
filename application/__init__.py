@@ -54,19 +54,13 @@ def init_db():
     from application.books.models import Book
     from application.videos.models import Video
     from application.podcasts.models import Podcast
-    from application.blogposts.models import BlogPost 
+    from application.blogposts.models import BlogPost
 
     db.drop_all()
     db.create_all()
-    initial_book = Book("Sinuhe egyptiläinen",
-                       "Mika Waltari", "Kertoo sinuhen tarinan")
-    initial_video = Video("Kissavideo", "www.youtube.com")
-    initial_podcast = Podcast("Eero", "Podcastin otsikko", "Podcastin nimi", "podcastin description")
-    initial_blogpost = BlogPost("Eeron blogi", "http://oontääkissa.com","eero","Eero kertoo kissoista" )
-    db.session().add(initial_book)
+    initial_video = Video(
+        "Kissavideo", "https://www.youtube.com/watch?v=ioj6RdUR5r4")
     db.session().add(initial_video)
-    db.session().add(initial_podcast)
-    db.session().add(initial_blogpost)
     db.session().commit()
 
 
