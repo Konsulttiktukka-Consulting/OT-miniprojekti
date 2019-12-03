@@ -59,7 +59,7 @@ def videos_create():
                 return redirect(url_for("videos.videos_index"))
             except:
                 form.url.errors = [
-                    "Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s'"]
+                    f"Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s', {DEVELOPER_KEY}"]
                 return render_template("videos/new.html", form=form)
     return render_template("videos/new.html", form=form)
 
