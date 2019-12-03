@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<!-- table table-hover table-sm  -->
+<h1 class="text-center">List of videos</h1>
+{% for video in videos %}
+<div class="card mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{video.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{video.category}}</h6>
+    <p class="card-text">
+    </p>
+
+
+    {#<div>
+      <form method="POST" action="{{ url_for('videos.videos_show', video_id=obj.id) }}">
+        <input class="btn btn-primary" type="submit" name="view" value="Toggle video" />
+      </form>
+    </div>#}
+
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
