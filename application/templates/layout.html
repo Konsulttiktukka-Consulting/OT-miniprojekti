@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Reading tips</title>
+  <title>Video bookmarks</title>
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="../static/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -26,20 +26,14 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Reading tips</div>
+      <div class="sidebar-heading">Video bookmarks</div>
       <div class="list-group list-group-flush">
 
-        <a href="{{ url_for('books.books_index') }}" name="all books"
+        <a href="{{ url_for('videos.videos_index') }}" name="all videos"
           class="list-group-item list-group-item-action bg-light">See all</a>
-        <a href="{{ url_for ('books.books_form') }}" class="list-group-item list-group-item-action bg-light">Add a
-          book</a>
+
         <a href="{{ url_for ('videos.video_form') }}" class="list-group-item list-group-item-action bg-light">Add a
           video</a>
-
-        <a href="{{ url_for ('podcasts.podcasts_form') }}" class="list-group-item list-group-item-action bg-light">Add a
-            podcast</a>
-        <a href="{{ url_for ('blogposts.blog_posts_form') }}" class="list-group-item list-group-item-action bg-light">Add a
-            blog post</a>
 
       </div>
     </div>
@@ -58,9 +52,6 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('books.index') }}">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/uberballo/OT-miniprojekti">Github</a>
             </li>
