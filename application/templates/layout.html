@@ -26,7 +26,11 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Video bookmarks</div>
+      <div class="sidebar-heading">
+        <a class="navbar-brand" href="{{ url_for('videos.index') }}">Video bookmarks</a>
+      </div>
+
+
       <div class="list-group list-group-flush">
 
         <a href="{{ url_for('videos.videos_index') }}" name="all videos"
