@@ -37,3 +37,8 @@ def remove_video(video_id):
 @bp.route("/videos", methods=["GET"])
 def videos_index():
     return render_template("videos/list.html", videos=Video.query.all())
+
+
+@bp.route('/')
+def index():
+    return render_template("index.html")
