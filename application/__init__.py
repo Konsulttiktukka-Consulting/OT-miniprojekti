@@ -35,15 +35,9 @@ def create_app(test_config=None):
     app.cli.add_command(init_db_command)
 
     # apply the blueprints to the app
-    from application import books
     from application import videos
-    from application import podcasts
-    from application import blogposts
 
-    app.register_blueprint(books.bp)
     app.register_blueprint(videos.bp)
-    app.register_blueprint(podcasts.bp)
-    app.register_blueprint(blogposts.bp)
 
     app.add_url_rule("/", endpoint="index")
 
@@ -51,10 +45,7 @@ def create_app(test_config=None):
 
 
 def init_db():
-    from application.books.models import Book
     from application.videos.models import Video
-    from application.podcasts.models import Podcast
-    from application.blogposts.models import BlogPost
 
     db.drop_all()
     db.create_all()
