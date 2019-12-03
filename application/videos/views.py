@@ -1,13 +1,17 @@
+from dotenv import load_dotenv
+import googleapiclient.discovery
+import os
+from application.videos.forms import VideoForm
+from application.videos.models import Video
+from application import db
+import re
+import json
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 import flask
-import json
-from application import db
-from application.videos.models import Video
-from application.videos.forms import VideoForm
-import os
-import googleapiclient.discovery
+<< << << < HEAD
+== == == =
+>>>>>> > master
 
-from dotenv import load_dotenv
 load_dotenv()
 
 bp = Blueprint("videos", __name__)
@@ -26,37 +30,37 @@ def videos_create():
         form = VideoForm(request.form)
 
         if form.validate_on_submit():
-            # try:
-            api_service_name = "youtube"
-            api_version = "v3"
-            DEVELOPER_KEY = os.getenv("API_KEY")
+            try:
+                api_service_name = "youtube"
+                api_version = "v3"
+                DEVELOPER_KEY = os.getenv("API_KEY")
 
-            youtube = googleapiclient.discovery.build(
-                api_service_name, api_version, developerKey=DEVELOPER_KEY)
+                youtube = googleapiclient.discovery.build(
+                    api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
-            video_id = form.url.data[-11:]
+                video_id = form.url.data[-11:]
 
-            res = youtube.videos().list(
-                part="snippet",
-                id=video_id
-            )
-            response = res.execute()
-            data = response["items"][0]
+                res = youtube.videos().list(
+                    part="snippet",
+                    id=video_id
+                )
+                response = res.execute()
+                data = response["items"][0]
 
-            url = data["id"]
-            title = data["snippet"]["title"]
-            description = data["snippet"]["description"]
-            creator = data["snippet"]["channelTitle"]
-            platform = "youtube"
+                url = data["id"]
+                title = data["snippet"]["title"]
+                description = data["snippet"]["description"]
+                creator = data["snippet"]["channelTitle"]
+                platform = "youtube"
 
-            new_video = Video(title, url, creator, description, platform)
-            print()
-            db.session().add(new_video)
-            db.session.commit()
+                new_video = Video(title, url, creator, description, platform)
+                print()
+                db.session().add(new_video)
+                db.session.commit()
 
-            return redirect(url_for("videos.videos_index"))
-            # except:
-            # return render_template("videos/new.html", form=form)
+                return redirect(url_for("videos.videos_index"))
+            except:
+                return render_template("videos/new.html", form=form)
     return render_template("videos/new.html", form=form)
 
 
@@ -72,7 +76,14 @@ def remove_video(video_id):
 @bp.route("/videos", methods=["GET"])
 def videos_index():
 
-    return render_template("videos/list.html", videos=Video.query.all())
+
+<< << << < HEAD
+== == == =
+videos = Video.query
+
+
+>>>>>> > master
+return render_template("videos/list.html", videos=Video.query.all())
 
 
 @bp.route('/')
