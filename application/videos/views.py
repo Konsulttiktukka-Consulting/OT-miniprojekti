@@ -1,9 +1,15 @@
+from dotenv import load_dotenv
+import googleapiclient.discovery
+import os
+from application.videos.forms import VideoForm
+from application.videos.models import Video
+from application import db
+import re
+import json
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 import flask
-import re
-from application import db
-from application.videos.models import Video
-from application.videos.forms import VideoForm
+
+load_dotenv()
 
 bp = Blueprint("videos", __name__)
 
@@ -19,16 +25,41 @@ def videos_create():
 
     if flask.request.method == 'POST':
         form = VideoForm(request.form)
+
         if form.validate_on_submit():
+            try:
+                api_service_name = "youtube"
+                api_version = "v3"
+                DEVELOPER_KEY = os.getenv("API_KEY")
 
-            url = form.url.data
-            pattern = re.compile('(?<=\?v=).*')
+                youtube = googleapiclient.discovery.build(
+                    api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
+                video_id = form.url.data[-11:]
 
-            new_video = Video(form.title.data, re.search(pattern,url)[0])
-            db.session().add(new_video)
-            db.session().commit()
-            return redirect(url_for("videos.videos_index"))
+                res = youtube.videos().list(
+                    part="snippet",
+                    id=video_id
+                )
+                response = res.execute()
+                data = response["items"][0]
+
+                url = data["id"]
+                title = data["snippet"]["title"]
+                description = data["snippet"]["description"]
+                creator = data["snippet"]["channelTitle"]
+                platform = "youtube"
+
+                new_video = Video(title, url, creator, description, platform)
+                print()
+                db.session().add(new_video)
+                db.session.commit()
+
+                return redirect(url_for("videos.videos_index"))
+            except:
+                return render_template("videos/new.html", form=form)
+    return render_template("videos/new.html", form=form)
+
 
 @bp.route("/videos/remove/<video_id>", methods=["POST"])
 def remove_video(video_id):
@@ -41,10 +72,6 @@ def remove_video(video_id):
 
 @bp.route("/videos", methods=["GET"])
 def videos_index():
-
-    videos = Video.query
-
-
     return render_template("videos/list.html", videos=Video.query.all())
 
 

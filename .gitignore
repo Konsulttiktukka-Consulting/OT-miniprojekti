@@ -3,7 +3,7 @@
 books.db
 *.db
 env/
-
+.env
 # mypy
 .mypy_cache/
 venv
