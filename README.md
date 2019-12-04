@@ -1,5 +1,7 @@
-# OT-miniprojekti [![CircleCI](https://circleci.com/gh/Konsulttiktukka-Consulting/OT-miniprojekti.svg?style=svg)](https://circleci.com/gh/Konsulttiktukka-Consulting/OT-miniprojekti)
+# OT-miniprojekti 
 [![codecov](https://codecov.io/gh/Konsulttiktukka-Consulting/OT-miniprojekti/branch/master/graph/badge.svg)](https://codecov.io/gh/Konsulttiktukka-Consulting/OT-miniprojekti)
+
+[![CircleCI](https://circleci.com/gh/Konsulttiktukka-Consulting/OT-miniprojekti.svg?style=svg)](https://circleci.com/gh/Konsulttiktukka-Consulting/OT-miniprojekti)
 
 
 ## How to install
