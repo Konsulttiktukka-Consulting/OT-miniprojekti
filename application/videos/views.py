@@ -30,36 +30,38 @@ def videos_create():
         form = VideoForm(request.form)
 
         if form.validate_on_submit():
-            try:
-                api_service_name = "youtube"
-                api_version = "v3"
+            # try:
+            api_service_name = "youtube"
+            api_version = "v3"
 
-                youtube = googleapiclient.discovery.build(
-                    api_service_name, api_version, developerKey=DEVELOPER_KEY)
+            youtube = googleapiclient.discovery.build(
+                api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
-                video_id = form.url.data[-11:]
+            video_id = form.url.data[-11:]
 
-                res = youtube.videos().list(
-                    part="snippet",
-                    id=video_id
-                )
-                response = res.execute()
-                data = response["items"][0]
+            res = youtube.videos().list(
+                part="snippet",
+                id=video_id
+            )
+            response = res.execute()
+            data = response["items"][0]
 
-                url = data["id"]
-                title = data["snippet"]["title"]
-                description = data["snippet"]["description"][:150]
-                creator = data["snippet"]["channelTitle"]
-                platform = "youtube"
-                new_video = Video(title, url, creator, description, platform)
-                db.session().add(new_video)
-                db.session.commit()
+            url = data["id"]
+            title = data["snippet"]["title"]
+            description = data["snippet"]["description"][:150]
+            creator = data["snippet"]["channelTitle"]
+            platform = "youtube"
+            new_video = Video(title, url, creator, description, platform)
+            db.session().add(new_video)
+            db.session.commit()
 
-                return redirect(url_for("videos.videos_index"))
-            except:
-                form.url.errors = [
-                    f"Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s'"]
-                return render_template("videos/new.html", form=form)
+            print(len(description))
+
+            return redirect(url_for("videos.videos_index"))
+            # except:
+            # form.url.errors = [
+            # f"Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s'"]
+            # return render_template("videos/new.html", form=form)
     return render_template("videos/new.html", form=form)
 
 
