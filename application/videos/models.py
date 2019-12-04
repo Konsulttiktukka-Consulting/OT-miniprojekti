@@ -7,7 +7,7 @@ class Video(db.Model):
     title = db.Column(db.String(144), nullable=False)
     url = db.Column(db.String(144), nullable=False)
     creator = db.Column(db.String(144), nullable=False)
-    description = db.Column(db.String(144), nullable=False)
+    description = db.Column(db.String(200), nullable=False)
     platform = db.Column(db.String(144), nullable=False)
 
     def __init__(self, title, url, creator, description, platform):
