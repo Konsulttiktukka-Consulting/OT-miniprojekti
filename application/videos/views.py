@@ -37,7 +37,10 @@ def videos_create():
                 youtube = googleapiclient.discovery.build(
                     api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
-                video_id = form.url.data[-11:]
+                if "?v=" in form.url.data:
+                    video_id = re.search(r'(?<=\?v=).{11}',form.url.data)[0]
+                else:
+                    video_id = re.search(r'(?<=\.be\/).{11}',form.url.data)[0]
 
                 res = youtube.videos().list(
                     part="snippet",
