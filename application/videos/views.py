@@ -30,39 +30,52 @@ def videos_create():
         form = VideoForm(request.form)
 
         if form.validate_on_submit():
-            try:
-                api_service_name = "youtube"
-                api_version = "v3"
+            if "youtu" in form.url.data:
+                try:
+                    api_service_name = "youtube"
+                    api_version = "v3"
 
-                youtube = googleapiclient.discovery.build(
-                    api_service_name, api_version, developerKey=DEVELOPER_KEY)
+                    youtube = googleapiclient.discovery.build(
+                        api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
-                if "?v=" in form.url.data:
-                    video_id = re.search(r'(?<=\?v=).{11}',form.url.data)[0]
-                else:
-                    video_id = re.search(r'(?<=\.be\/).{11}',form.url.data)[0]
+                    if "?v=" in form.url.data:
+                        video_id = re.search(r'(?<=\?v=).{11}',form.url.data)[0]
+                    else:
+                        video_id = re.search(r'(?<=\.be\/).{11}',form.url.data)[0]
 
-                res = youtube.videos().list(
-                    part="snippet",
-                    id=video_id
-                )
-                response = res.execute()
-                data = response["items"][0]
+                    res = youtube.videos().list(
+                        part="snippet",
+                        id=video_id
+                    )
+                    response = res.execute()
+                    data = response["items"][0]
 
-                url = data["id"]
-                title = data["snippet"]["title"]
-                description = data["snippet"]["description"][:150]
-                creator = data["snippet"]["channelTitle"]
-                platform = "youtube"
+                    url = data["id"]
+                    title = data["snippet"]["title"]
+                    description = data["snippet"]["description"][:150]
+                    creator = data["snippet"]["channelTitle"]
+                    platform = "youtube"
+                    new_video = Video(title, url, creator, description, platform)
+                    db.session().add(new_video)
+                    db.session.commit()
+
+                    return redirect(url_for("videos.videos_index"))
+                except:
+                    form.url.errors = [
+                        f"Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s'"]
+                    return render_template("videos/new.html", form=form)
+            elif "twitch" in form.url.data:
+                url = form.url.data
+                title = re.search(r'(?<=.tv\/).*',url)[0]
+                description = "none"
+                creator = title
+                platform = "twitch"
                 new_video = Video(title, url, creator, description, platform)
                 db.session().add(new_video)
                 db.session.commit()
-
                 return redirect(url_for("videos.videos_index"))
-            except:
-                form.url.errors = [
-                    f"Wrong url, url must be typed like 'https://www.youtube.com/watch?v=StqIbgNA35s'"]
-                return render_template("videos/new.html", form=form)
+
+
     return render_template("videos/new.html", form=form)
 
 
