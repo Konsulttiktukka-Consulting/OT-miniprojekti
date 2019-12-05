@@ -29,17 +29,19 @@
 * Generate coverage report after coverage test
 `coverage report`
 
+
 ## Definition of Done
 
 For us, a task is done when  
-* Intented features have been implemented and works  
-* Test are done for the feature and passed  
-* The feature has been implemented as it has been written in the backlog.
+* Intended features have been implemented and they work  
+* Tests are done for the feature and passed  
+* The feature has been implemented as it has been written in the backlog
 * Test coverage is over 75%
-* Heroku website works as wanted.
+* Heroku website works as wanted
 
 
 ## Links
 [Backlog](https://docs.google.com/spreadsheets/d/1Wlm32y41gkM6qK-flYYq2uv-XSGK1AAIOtu35zd_JlQ/edit?usp=sharing)
 
 [Heroku](http://konsulttitukkaconsulting.herokuapp.com/)
+
