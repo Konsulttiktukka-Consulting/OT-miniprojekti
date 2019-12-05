@@ -2,7 +2,7 @@ import pytest
 
 from application import create_app
 from application import db
-from application import init_db
+from application import init_test_db
 
 
 @pytest.fixture
@@ -13,7 +13,7 @@ def app():
         {"TESTING": True, "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:"})
 
     with app.app_context():
-        init_db()
+        init_test_db()
     yield app
 
 
