@@ -55,8 +55,6 @@ def videos_create():
                 db.session().add(new_video)
                 db.session.commit()
 
-                print(len(description))
-
                 return redirect(url_for("videos.videos_index"))
             except:
                 form.url.errors = [
