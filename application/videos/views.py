@@ -17,7 +17,11 @@ if os.environ.get("HEROKU", 2) == 1:
 
 bp = Blueprint("videos", __name__)
 
-TWITCH_API_KEY = os.getenv("TWITCH_API_KEY")
+if os.environ.get("HEROKU", 2) == 1:
+    TWITCH_API_KEY = os.environ.get("TWITCH_API_KEY")
+else:
+    TWITCH_API_KEY = os.getenv("TWITCH_API_KEY")
+
 helix = twitch.Helix(TWITCH_API_KEY)
 
 
