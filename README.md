@@ -29,6 +29,7 @@
 * Generate coverage report after coverage test
 `coverage report`
 
+
 ## Definition of Done
 
 For us, a task is done when  
@@ -43,3 +44,4 @@ For us, a task is done when
 [Backlog](https://docs.google.com/spreadsheets/d/1Wlm32y41gkM6qK-flYYq2uv-XSGK1AAIOtu35zd_JlQ/edit?usp=sharing)
 
 [Heroku](http://konsulttitukkaconsulting.herokuapp.com/)
+
