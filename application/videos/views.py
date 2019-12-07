@@ -14,6 +14,9 @@ load_dotenv()
 DEVELOPER_KEY = os.getenv("API_KEY")
 if os.environ.get("HEROKU", 2) == 1:
     DEVELOPER_KEY = os.environ.get("API_KEY")
+    
+if os.environ.get("CIRCLECI", 2) == 1:
+    DEVELOPER_KEY = os.environ.get("API_KEY")
 
 bp = Blueprint("videos", __name__)
 
