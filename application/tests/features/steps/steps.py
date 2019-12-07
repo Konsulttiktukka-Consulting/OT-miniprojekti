@@ -1,6 +1,9 @@
 from behave import *
 from selenium import webdriver
-driver = webdriver.Chrome()
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
 @given('I am at the start page')
 def step_impl(context):
