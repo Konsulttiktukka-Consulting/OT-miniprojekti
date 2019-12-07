@@ -24,12 +24,9 @@ jobs:
     steps:
       - checkout
       
-      - browser-tools/install-browser-tools
-
-      - browser-tools/install-chrome
-
-      - browser-tools/install-chromedriver
-
+      - browser-tools/install-browser-tools:
+          install-chrome
+          install-chromedriver
 
       # Download and cache dependencies
       - restore_cache:
