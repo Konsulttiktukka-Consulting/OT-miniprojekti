@@ -10,25 +10,13 @@
       <!-- <a href="https://www.youtube.com/watch?v=ioj6RdUR5r4">video =)</a> -->
     </p>
     <div class="embed-responsive embed-responsive-1by1">
-      <iframe
-        width="420"
-        height="315"
-        src="https://www.youtube.com/embed/{{ video.url }}"
-      >
+      <iframe width="420" height="315" src="https://www.youtube.com/embed/{{ video.url }}">
       </iframe>
     </div>
 
     <div>
-      <form
-        method="POST"
-        action="{{ url_for('videos.remove_video', video_id=video.id) }}"
-      >
-        <input
-          class="btn btn-primary"
-          type="submit"
-          name="delete"
-          value="remove video"
-        />
+      <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
+        <input class="btn btn-primary" type="submit" name="delete" value="remove video" />
       </form>
     </div>
 
@@ -62,39 +50,25 @@
       <div id="twitch-embed-{{video.id}}"></div>
 
       <!-- Load the Twitch embed script -->
-      <script src="https://embed.twitch.tv/embed/v1.js"></script>
-
+      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
       <!--
     Create a Twitch.Embed object that will render
     within the "twitch-embed" root element.
   -->
       <script type="text/javascript">
-        var embed = new Twitch.Embed("twitch-embed-{{video.id}}", {
+        var embed = new Twitch.Player("twitch-embed-{{video.id}}", {
           width: 854,
           height: 480,
           channel: "{{video.creator}}",
           layout: "video",
           autoplay: false
         });
-
-        embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
-          var player = embed.getPlayer();
-          player.pause();
-        });
       </script>
     </div>
 
     <div>
-      <form
-        method="POST"
-        action="{{ url_for('videos.remove_video', video_id=video.id) }}"
-      >
-        <input
-          class="btn btn-primary"
-          type="submit"
-          name="view"
-          value="remove video"
-        />
+      <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
+        <input class="btn btn-primary" type="submit" name="view" value="remove video" />
       </form>
     </div>
   </div>
