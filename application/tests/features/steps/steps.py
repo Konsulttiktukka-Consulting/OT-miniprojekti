@@ -39,8 +39,7 @@ def step_impl(context):
 @then('The video is added and shown in the video list')
 def step_impl(context):
     driver.implicitly_wait(10)
-    elem = driver.find_element_by_name("all videos")
-    elem.click()
+    assert driver.current_url == 'http://localhost:5000/videos'
     assert ('SQUISH THAT CAT' in driver.page_source)
     
 @then('I am shown a form to add a video')
@@ -59,5 +58,3 @@ def step_impl(context):
 def step_impl(context):
     driver.implicitly_wait(10)
     assert ('remove video' in driver.page_source)
-    elem = driver.find_element_by_name("delete")
-    elem.click()
