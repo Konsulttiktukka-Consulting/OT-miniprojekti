@@ -54,6 +54,8 @@ jobs:
           name: start server for tests
           command: |
             . venv/bin/activate
+            export FLASK_APP=application
+            flask init-db
             python3 run.py
           background: true
           environment: 
