@@ -23,6 +23,13 @@ jobs:
 
     steps:
       - checkout
+      
+      - browser-tools/install-browser-tools
+
+      - browser-tools/install-chrome
+
+      - browser-tools/install-chromedriver
+
 
       # Download and cache dependencies
       - restore_cache:
@@ -31,12 +38,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run:
-          name: install browsertools
-          command: | 
-            browser-tools/install-browser-tools
-            browser-tools/install-chrome
-            browser-tools/install-chromedriver
       - run:
           name: install dependencies
           command: |
