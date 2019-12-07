@@ -51,10 +51,16 @@ jobs:
             codecov
 
       - run:
-          name: run behave tests
+          name: start server for tests
           command: |
           . venv/bin/activate
           python3 run.py
+          background: true
+
+      - run:
+          name: run behave tests
+          command: |
+          . venv/bin/activate
           behave application/tests/features/
 
       - store_artifacts:
