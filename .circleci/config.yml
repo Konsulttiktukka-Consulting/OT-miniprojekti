@@ -9,7 +9,6 @@ jobs:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.7.0
-      - image: selenium/standalone-chrome:3.1.0
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -27,15 +26,14 @@ jobs:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      
       - run:
-          name: Download Selenium
-          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-          background: true
-
+          name: install chromedriver
+          command: | 
+            wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/bin/chromedriver
+            sudo chown root:root /usr/bin/chromedriver
+            sudo chmod +x /usr/bin/chromedriver     
       - run:
           name: install dependencies
           command: |
