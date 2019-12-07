@@ -10,8 +10,6 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7.0
-    environment:
-          CIRCLECI: 1
 
     working_directory: ~/repo
 
@@ -58,6 +56,8 @@ jobs:
             . venv/bin/activate
             python3 run.py
           background: true
+          environment: 
+            CIRCLECI: 1
 
       - run:
           name: run behave tests
