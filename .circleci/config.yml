@@ -18,6 +18,9 @@ jobs:
 
     working_directory: ~/repo
 
+    orbs:
+      browser-tools: circleci/browser-tools@0.1.3
+
     steps:
       - checkout
 
