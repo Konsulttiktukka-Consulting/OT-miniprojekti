@@ -47,9 +47,15 @@ jobs:
           command: |
             . venv/bin/activate
             python3 -m pytest application/tests
-            behave application/tests/features/
             coverage run -m pytest
             codecov
+
+      - run:
+          name: run behave tests
+          command: |
+          . venv/bin/activate
+          python3 run.py
+          behave application/tests/features/
 
       - store_artifacts:
           path: test-reports
