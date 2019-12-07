@@ -26,13 +26,15 @@ jobs:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run:
-        name: install chrome
-        command: |
-          sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
-          sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get -y update
-          sudo apt-get -y install google-chrome-stable
+
+      - run: 
+          name: install chrome
+          command: |
+            sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+            sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+            sudo apt-get -y update
+            sudo apt-get -y install google-chrome-stable
+
       - run:
           name: install chromedriver
           command: | 
