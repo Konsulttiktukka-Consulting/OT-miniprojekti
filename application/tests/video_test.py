@@ -57,5 +57,5 @@ def test_remove_video_works(client, app):
             f"/videos/remove/{video_to_remove.id}",
             follow_redirects=True)
 
-        assert b"List of videos" in response.data
+        assert b"Video bookmarks" in response.data
         assert Video.query.count() == 0
