@@ -18,6 +18,23 @@
   <!-- <link href="../static/css/simple-sidebar.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/simple-sidebar.css') }}">
 
+
+
+    <script>
+        function hideBlock(id) {
+            var block = document.getElementById(id);
+
+            if(block.style.display === "none"){
+                block.style.display = "block";
+            } else {
+                block.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+
 </head>
 
 <body>

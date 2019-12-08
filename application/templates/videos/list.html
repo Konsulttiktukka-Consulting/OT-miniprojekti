@@ -1,77 +1,56 @@
 {% extends "layout.html" %} {% block body %}
 <!-- table table-hover table-sm  -->
-<h1 class="text-center">List of videos</h1>
-{% for video in videos %} {% if video.platform == "youtube"%}
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">{{ video.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ video.description}} ...</h6>
-    <p class="card-text">
-      <!-- <a href="https://www.youtube.com/watch?v=ioj6RdUR5r4">video =)</a> -->
-    </p>
-    <div class="embed-responsive embed-responsive-1by1">
-      <iframe width="420" height="315" src="https://www.youtube.com/embed/{{ video.url }}">
-      </iframe>
-    </div>
+<h1 class="text-center">Video bookmarks</h1>
+{% for video in videos %}
+    <button onclick="hideBlock({{ video.title }})" type="button" class="btn btn-warning">Hide</button>
+    <div id="{{ video.title }}">
+    {% if video.platform == "youtube"%}
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ video.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ video.description}} ...</h6>
+            <p class="card-text">
+            </p>
+            <div class="embed-responsive embed-responsive-1by1">
+              <iframe width="420" height="315" src="https://www.youtube.com/embed/{{ video.url }}">
+              </iframe>
+            </div>
 
-    <div>
-      <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
-        <input class="btn btn-primary" type="submit" name="delete" value="remove video" />
-      </form>
-    </div>
+            <div>
+              <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
+                <input class="btn btn-danger" type="submit" name="delete" value="remove video" />
+              </form>
+            </div>
+          </div>
+        </div>
 
-    {#
-    <div>
-      <form
-        method="POST"
-        action="{{ url_for('videos.videos_show', video_id=video.id) }}"
-      >
-        <input
-          class="btn btn-primary"
-          type="submit"
-          name="view"
-          value="Toggle video"
-        />
-      </form>
+    {% elif video.platform == "twitch" %}
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ video.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ video.description}} ...</h6>
+            <p class="card-text">
+            </p>
+            <div class="embed-responsive embed-responsive-1by1">
+              <div id="twitch-embed-{{video.id}}"></div>
+                <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+              <script type="text/javascript">
+                var embed = new Twitch.Player("twitch-embed-{{video.id}}", {
+                  width: 854,
+                  height: 480,
+                  channel: "{{video.creator}}",
+                  layout: "video",
+                  autoplay: false
+                });
+              </script>
+            </div>
+
+        <div>
+          <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
+            <input class="btn btn-danger" type="submit" name="view" value="remove video" />
+          </form>
+        </div>
+      </div>
     </div>
-    #}
-  </div>
 </div>
-{% elif video.platform == "twitch" %}
-
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">{{ video.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ video.description}} ...</h6>
-    <p class="card-text">
-      <!-- <a href="https://www.youtube.com/watch?v=ioj6RdUR5r4">video =)</a> -->
-    </p>
-    <div class="embed-responsive embed-responsive-1by1">
-      <div id="twitch-embed-{{video.id}}"></div>
-
-      <!-- Load the Twitch embed script -->
-      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-      <!--
-    Create a Twitch.Embed object that will render
-    within the "twitch-embed" root element.
-  -->
-      <script type="text/javascript">
-        var embed = new Twitch.Player("twitch-embed-{{video.id}}", {
-          width: 854,
-          height: 480,
-          channel: "{{video.creator}}",
-          layout: "video",
-          autoplay: false
-        });
-      </script>
-    </div>
-
-    <div>
-      <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
-        <input class="btn btn-primary" type="submit" name="view" value="remove video" />
-      </form>
-    </div>
-  </div>
-</div>
-
 {% endif %} {% endfor %} {% endblock %}
