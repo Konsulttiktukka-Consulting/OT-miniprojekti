@@ -7,5 +7,5 @@ def test_init_db_initialises_db_with_one_video(app, client):
 
     with app.app_context():
         init_db()
-        video = Video.query.first()
-        assert video.title == "Kissavideo"
+        videos = Video.query.all()
+        assert videos[1].title == "DreamHackCS"
