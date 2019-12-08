@@ -17,13 +17,11 @@
 
   <div class="card mb-3">
     <div class="card-body">
-      <button onclick="hideOnClick('{{video.id}}')">Hide</button>
 
       <h5 class="card-title">{{ video.title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ video.description}} ...</h6>
-      <p class="card-text">
+      <button class="btn btn-warning" onclick="hideOnClick('{{video.id}}')">Hide</button>
 
-      </p>
       <div id="{{video.id}}" style="display: none;">
         {% if video.platform == "youtube"%}
 
@@ -51,8 +49,6 @@
         </div>
         {% endif %}
       </div>
-    </div>
-    <div>
       <form method="POST" action="{{ url_for('videos.remove_video', video_id=video.id) }}">
         <input class="btn btn-danger" type="submit" name="view" value="remove video" />
       </form>
