@@ -23,6 +23,8 @@
 `python3 run.py` 
 
 ## Tests
+
+### Unit-tests
 * Use the virtual environment  
 * Run tests with  
 `python3 -m pytest application/tests`
@@ -30,6 +32,13 @@
 `coverage run -m pytest`
 * Generate coverage report after coverage test
 `coverage report`
+
+### E2E-tests (behave)
+
+* Make sure you have chrome/chromium and chromedriver installed
+* Use the virtual environment
+* Run the application in the background
+* Run behave tests with `behave application/tests/features/`
 
 
 ## Definition of Done
