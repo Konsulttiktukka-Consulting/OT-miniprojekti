@@ -9,4 +9,9 @@ Feature: Add
     Given I am at the add video page
     When I enter a valid youtube url and submit the form 
     Then The video is added and shown in the video list
+
+  Scenario: Post a new twitch stream
+    Given I am at the add video page
+    When I enter a valid twitch url and submit the form 
+    Then The stream is added and shown in the video list
     

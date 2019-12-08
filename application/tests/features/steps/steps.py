@@ -23,6 +23,14 @@ def step_impl(context):
     urlform.send_keys("https://www.youtube.com/watch?v=5jKZ9KGtee0")  
     elem = driver.find_element_by_name("addButton")
     elem.click()
+
+@when('I enter a valid twitch url and submit the form')
+def step_impl(context):
+    driver.implicitly_wait(10)
+    urlform = driver.find_element_by_id("url")
+    urlform.send_keys("https://www.twitch.tv/esl_csgo")  
+    elem = driver.find_element_by_name("addButton")
+    elem.click()
        
 @when('I click the video list button')
 def step_impl(context):
@@ -41,6 +49,12 @@ def step_impl(context):
     driver.implicitly_wait(10)
     assert driver.current_url == 'http://localhost:5000/videos'
     assert ('SQUISH THAT CAT' in driver.page_source)
+
+@then('The stream is added and shown in the video list')
+def step_impl(context):
+    driver.implicitly_wait(10)
+    assert driver.current_url == 'http://localhost:5000/videos'
+    assert ('ESL_CSGO' in driver.page_source)
     
 @then('I am shown a form to add a video')
 def step_impl(context):
@@ -58,3 +72,13 @@ def step_impl(context):
 def step_impl(context):
     driver.implicitly_wait(10)
     assert ('remove video' in driver.page_source)
+
+@then('I can see a added youtube video in embedded form')
+def step_impl(context):
+    driver.implicitly_wait(10)
+    assert ('iframe' in driver.page_source)
+
+@then('I can see a added twitch stream in embedded form')
+def step_impl(context):
+    driver.implicitly_wait(10)
+    assert ('iframe' in driver.page_source)
