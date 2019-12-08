@@ -49,9 +49,16 @@ def init_db():
 
     db.drop_all()
     db.create_all()
-    initial_video = Video("Kissavideo", "Klh4sbcQTIM", "moi", "moi", "moi")
+    initial_video = Video("Iha ok mut ootko kattonu simpsonit sarjasta jakson himo läski homer", "QyYyuTsx9lE", "Goolag User",
+                          "iha ok mut ootko kattonu simpsonit sarjasta jakson himo läski homer :D siinä esiintyy koko simpsonit perhe",
+                          "youtube")
+    initial_stream = Video("DreamHackCS",
+                           "https://www.twitch.tv/dreamhackcs",
+                           "DreamHackCS","DreamHack's Counter-Strike: Global Offensive channel.",
+                           "twitch")
 
     db.session().add(initial_video)
+    db.session().add(initial_stream)
     db.session().commit()
 
 
