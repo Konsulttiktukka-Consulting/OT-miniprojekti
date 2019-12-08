@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1 class="text-center">Add a new video</h1>
+<h1 class="text-center">Add a new bookmark</h1>
 <form method="POST" action="{{ url_for('videos.videos_create') }}">
   <div class="form-group">
     {{ form.url.label }}
