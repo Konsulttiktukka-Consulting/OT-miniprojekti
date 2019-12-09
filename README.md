@@ -22,6 +22,10 @@
 * Run the application with  
 `python3 run.py` 
 
+ Makse sure to have following API-keys in `/application/.env` file:   
+- API_KEY from Youtube's API  
+- TWITCH_API_KEY from twitch's API
+
 ## Tests
 
 ### Unit-tests
