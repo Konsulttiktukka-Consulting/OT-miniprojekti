@@ -5,7 +5,7 @@
 
 
 ## How to install
-* Make sure to have the latest verison of Python 3, python3-venv, SQLite 3 and pip. 
+* Make sure to have the latest version of Python 3, python3-venv, SQLite 3 and pip. 
 * Unzip the program folder if needed and make it your current working directory.
 * Make virtual environment with  
 `python3 -m venv venv`  
@@ -59,4 +59,5 @@ For us, a task is done when
 [Backlog](https://docs.google.com/spreadsheets/d/1Wlm32y41gkM6qK-flYYq2uv-XSGK1AAIOtu35zd_JlQ/edit?usp=sharing)
 
 [Heroku](http://konsulttitukkaconsulting.herokuapp.com/)
+
 
