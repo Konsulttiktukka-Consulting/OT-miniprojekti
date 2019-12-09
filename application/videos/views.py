@@ -1,14 +1,14 @@
-from dotenv import load_dotenv
 import googleapiclient.discovery
 import os
+import re
+import json
+import flask
+import twitch
+from dotenv import load_dotenv
 from application.videos.forms import VideoForm
 from application.videos.models import Video
 from application import db
-import re
-import json
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for
-import flask
-import twitch
 
 load_dotenv()
 DEVELOPER_KEY = os.getenv("API_KEY")
