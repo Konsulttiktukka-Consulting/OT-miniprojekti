@@ -5,7 +5,7 @@
 
 
 ## How to install
-* Make sure to have the latest verison of Python 3, python3-venv, SQLite 3 and pip. 
+* Make sure to have the latest version of Python 3, python3-venv, SQLite 3 and pip. 
 * Unzip the program folder if needed and make it your current working directory.
 * Make virtual environment with  
 `python3 -m venv venv`  
