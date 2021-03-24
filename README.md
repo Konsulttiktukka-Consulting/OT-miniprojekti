@@ -4,6 +4,7 @@
 [![CircleCI](https://circleci.com/gh/Konsulttiktukka-Consulting/OT-miniprojekti.svg?style=svg)](https://circleci.com/gh/Konsulttiktukka-Consulting/OT-miniprojekti)
 
 
+
 ## How to install
 * Make sure to have the latest version of Python 3, python3-venv, SQLite 3 and pip. 
 * Unzip the program folder if needed and make it your current working directory.
